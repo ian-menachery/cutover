@@ -198,14 +198,15 @@ a port, not a claim.
 | Date | Hours to date | What changed | Next |
 |---|---|---|---|
 | 2026-11-17 | ~0.5 | Repo created, SCOPE drafted. | Ian's approval, then spec + generator. |
+| 2026-11-17 | ~5 | SCOPE approved. Spec, DuckDB loader and views, R1-R8, runner with exception register and readiness, generator (legacy data, independent Python ETL, nine defects as patches), scorer, 32 tests at 99% coverage on checks. Gates 1 and 2 pass on first run. | Gate 3 blind round, then the TypeScript port. |
 
 ## Gate results
 
 | Gate | Date | Result | Decision |
 |---|---|---|---|
 | 0 quality | | | |
-| 1 clean | | | |
-| 2 known defects | | | |
+| 1 clean | 2026-11-17 | pass | 20/20 clean seeds READY: 0 open findings, all 4 deferrals matched as known exceptions, 0 stale, 0 skips. Proceed. |
+| 2 known defects | 2026-11-17 | pass | 9/9 classes in 20/20 seeds; 19,869/19,869 instances (100%); 0 false positives in 21,679 open findings; BLOCKED 20/20 with D6 under warnings only; every defect caught by exactly the predicted checks. Self-graded, so weak evidence alone: Gate 3 decides. |
 | 3 blind defects | | | |
 | 4 port parity | | | |
 
@@ -213,3 +214,6 @@ a port, not a claim.
 
 | Date | What changed and why |
 |---|---|
+| 2026-11-17 | R5's expected side also excludes registered deferrals. A deferred policy is a reconciling item; without this every run, clean or not, fails R5 in the deferred policies' groups, the same false alarm R1's rule already prevents. Written before the first gate run. |
+| 2026-11-17 | R4 compares against in-scope legacy keys and names a target row that matches an out-of-scope legacy row as `out_of_scope` (a scope violation) rather than letting it pass as "matched". R6 also counts an unparseable legacy value as a difference, so two NULLs never silently match. Both written before the first gate run. |
+| 2026-11-17 | Gate 2 scoring, stated exactly: a control-total finding counts as a true positive only if an instance that can move a total (a row on one side only, or a change to a summed or grouped field) touches its group; a count finding when its entity has an instance. Stricter than the bar as first written. Fixed before the gate run. |

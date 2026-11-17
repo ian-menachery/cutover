@@ -1,0 +1,1087 @@
+{
+ "gate": 2,
+ "pass": true,
+ "pooled": {
+  "instances": 19869,
+  "detected": 19869,
+  "instance_recall": 1.0,
+  "findings": 21679,
+  "false_positives": 0,
+  "precision": 1.0
+ },
+ "caught_by": {
+  "D1": {
+   "predicted": [
+    "R1",
+    "R3",
+    "R5"
+   ],
+   "actual": [
+    "R1",
+    "R3",
+    "R5"
+   ]
+  },
+  "D2": {
+   "predicted": [
+    "R1",
+    "R2"
+   ],
+   "actual": [
+    "R1",
+    "R2"
+   ]
+  },
+  "D3": {
+   "predicted": [
+    "R5",
+    "R6"
+   ],
+   "actual": [
+    "R5",
+    "R6"
+   ]
+  },
+  "D4": {
+   "predicted": [
+    "R5",
+    "R7"
+   ],
+   "actual": [
+    "R5",
+    "R7"
+   ]
+  },
+  "D5": {
+   "predicted": [
+    "R6"
+   ],
+   "actual": [
+    "R6"
+   ]
+  },
+  "D6": {
+   "predicted": [
+    "R6"
+   ],
+   "actual": [
+    "R6"
+   ]
+  },
+  "D7": {
+   "predicted": [
+    "R2",
+    "R3"
+   ],
+   "actual": [
+    "R2",
+    "R3"
+   ]
+  },
+  "D8": {
+   "predicted": [
+    "R1",
+    "R4",
+    "R5"
+   ],
+   "actual": [
+    "R1",
+    "R4",
+    "R5"
+   ]
+  },
+  "D9": {
+   "predicted": [
+    "R6",
+    "R8"
+   ],
+   "actual": [
+    "R6",
+    "R8"
+   ]
+  }
+ },
+ "seeds": [
+  {
+   "seed": 1,
+   "instances": 990,
+   "detected": 990,
+   "classes_detected": 9,
+   "findings": 1087,
+   "false_positives": 0,
+   "readiness": "BLOCKED",
+   "d6_warning_only": true,
+   "by_defect": {
+    "D1": [
+     20,
+     20
+    ],
+    "D2": [
+     5,
+     5
+    ],
+    "D3": [
+     424,
+     424
+    ],
+    "D4": [
+     6,
+     6
+    ],
+    "D5": [
+     411,
+     411
+    ],
+    "D6": [
+     102,
+     102
+    ],
+    "D7": [
+     8,
+     8
+    ],
+    "D8": [
+     8,
+     8
+    ],
+    "D9": [
+     6,
+     6
+    ]
+   },
+   "first_false_positives": []
+  },
+  {
+   "seed": 2,
+   "instances": 991,
+   "detected": 991,
+   "classes_detected": 9,
+   "findings": 1087,
+   "false_positives": 0,
+   "readiness": "BLOCKED",
+   "d6_warning_only": true,
+   "by_defect": {
+    "D1": [
+     21,
+     21
+    ],
+    "D2": [
+     5,
+     5
+    ],
+    "D3": [
+     422,
+     422
+    ],
+    "D4": [
+     6,
+     6
+    ],
+    "D5": [
+     411,
+     411
+    ],
+    "D6": [
+     104,
+     104
+    ],
+    "D7": [
+     8,
+     8
+    ],
+    "D8": [
+     8,
+     8
+    ],
+    "D9": [
+     6,
+     6
+    ]
+   },
+   "first_false_positives": []
+  },
+  {
+   "seed": 3,
+   "instances": 992,
+   "detected": 992,
+   "classes_detected": 9,
+   "findings": 1084,
+   "false_positives": 0,
+   "readiness": "BLOCKED",
+   "d6_warning_only": true,
+   "by_defect": {
+    "D1": [
+     17,
+     17
+    ],
+    "D2": [
+     5,
+     5
+    ],
+    "D3": [
+     437,
+     437
+    ],
+    "D4": [
+     6,
+     6
+    ],
+    "D5": [
+     419,
+     419
+    ],
+    "D6": [
+     86,
+     86
+    ],
+    "D7": [
+     8,
+     8
+    ],
+    "D8": [
+     8,
+     8
+    ],
+    "D9": [
+     6,
+     6
+    ]
+   },
+   "first_false_positives": []
+  },
+  {
+   "seed": 4,
+   "instances": 996,
+   "detected": 996,
+   "classes_detected": 9,
+   "findings": 1084,
+   "false_positives": 0,
+   "readiness": "BLOCKED",
+   "d6_warning_only": true,
+   "by_defect": {
+    "D1": [
+     17,
+     17
+    ],
+    "D2": [
+     5,
+     5
+    ],
+    "D3": [
+     427,
+     427
+    ],
+    "D4": [
+     6,
+     6
+    ],
+    "D5": [
+     427,
+     427
+    ],
+    "D6": [
+     92,
+     92
+    ],
+    "D7": [
+     8,
+     8
+    ],
+    "D8": [
+     8,
+     8
+    ],
+    "D9": [
+     6,
+     6
+    ]
+   },
+   "first_false_positives": []
+  },
+  {
+   "seed": 5,
+   "instances": 985,
+   "detected": 985,
+   "classes_detected": 9,
+   "findings": 1076,
+   "false_positives": 0,
+   "readiness": "BLOCKED",
+   "d6_warning_only": true,
+   "by_defect": {
+    "D1": [
+     19,
+     19
+    ],
+    "D2": [
+     5,
+     5
+    ],
+    "D3": [
+     432,
+     432
+    ],
+    "D4": [
+     6,
+     6
+    ],
+    "D5": [
+     410,
+     410
+    ],
+    "D6": [
+     91,
+     91
+    ],
+    "D7": [
+     8,
+     8
+    ],
+    "D8": [
+     8,
+     8
+    ],
+    "D9": [
+     6,
+     6
+    ]
+   },
+   "first_false_positives": []
+  },
+  {
+   "seed": 6,
+   "instances": 1009,
+   "detected": 1009,
+   "classes_detected": 9,
+   "findings": 1090,
+   "false_positives": 0,
+   "readiness": "BLOCKED",
+   "d6_warning_only": true,
+   "by_defect": {
+    "D1": [
+     19,
+     19
+    ],
+    "D2": [
+     5,
+     5
+    ],
+    "D3": [
+     427,
+     427
+    ],
+    "D4": [
+     6,
+     6
+    ],
+    "D5": [
+     415,
+     415
+    ],
+    "D6": [
+     115,
+     115
+    ],
+    "D7": [
+     8,
+     8
+    ],
+    "D8": [
+     8,
+     8
+    ],
+    "D9": [
+     6,
+     6
+    ]
+   },
+   "first_false_positives": []
+  },
+  {
+   "seed": 7,
+   "instances": 971,
+   "detected": 971,
+   "classes_detected": 9,
+   "findings": 1047,
+   "false_positives": 0,
+   "readiness": "BLOCKED",
+   "d6_warning_only": true,
+   "by_defect": {
+    "D1": [
+     17,
+     17
+    ],
+    "D2": [
+     5,
+     5
+    ],
+    "D3": [
+     419,
+     419
+    ],
+    "D4": [
+     6,
+     6
+    ],
+    "D5": [
+     413,
+     413
+    ],
+    "D6": [
+     89,
+     89
+    ],
+    "D7": [
+     8,
+     8
+    ],
+    "D8": [
+     8,
+     8
+    ],
+    "D9": [
+     6,
+     6
+    ]
+   },
+   "first_false_positives": []
+  },
+  {
+   "seed": 8,
+   "instances": 991,
+   "detected": 991,
+   "classes_detected": 9,
+   "findings": 1091,
+   "false_positives": 0,
+   "readiness": "BLOCKED",
+   "d6_warning_only": true,
+   "by_defect": {
+    "D1": [
+     21,
+     21
+    ],
+    "D2": [
+     5,
+     5
+    ],
+    "D3": [
+     437,
+     437
+    ],
+    "D4": [
+     6,
+     6
+    ],
+    "D5": [
+     403,
+     403
+    ],
+    "D6": [
+     97,
+     97
+    ],
+    "D7": [
+     8,
+     8
+    ],
+    "D8": [
+     8,
+     8
+    ],
+    "D9": [
+     6,
+     6
+    ]
+   },
+   "first_false_positives": []
+  },
+  {
+   "seed": 9,
+   "instances": 991,
+   "detected": 991,
+   "classes_detected": 9,
+   "findings": 1086,
+   "false_positives": 0,
+   "readiness": "BLOCKED",
+   "d6_warning_only": true,
+   "by_defect": {
+    "D1": [
+     19,
+     19
+    ],
+    "D2": [
+     5,
+     5
+    ],
+    "D3": [
+     435,
+     435
+    ],
+    "D4": [
+     6,
+     6
+    ],
+    "D5": [
+     400,
+     400
+    ],
+    "D6": [
+     104,
+     104
+    ],
+    "D7": [
+     8,
+     8
+    ],
+    "D8": [
+     8,
+     8
+    ],
+    "D9": [
+     6,
+     6
+    ]
+   },
+   "first_false_positives": []
+  },
+  {
+   "seed": 10,
+   "instances": 932,
+   "detected": 932,
+   "classes_detected": 9,
+   "findings": 1025,
+   "false_positives": 0,
+   "readiness": "BLOCKED",
+   "d6_warning_only": true,
+   "by_defect": {
+    "D1": [
+     19,
+     19
+    ],
+    "D2": [
+     5,
+     5
+    ],
+    "D3": [
+     403,
+     403
+    ],
+    "D4": [
+     6,
+     6
+    ],
+    "D5": [
+     401,
+     401
+    ],
+    "D6": [
+     76,
+     76
+    ],
+    "D7": [
+     8,
+     8
+    ],
+    "D8": [
+     8,
+     8
+    ],
+    "D9": [
+     6,
+     6
+    ]
+   },
+   "first_false_positives": []
+  },
+  {
+   "seed": 11,
+   "instances": 1031,
+   "detected": 1031,
+   "classes_detected": 9,
+   "findings": 1116,
+   "false_positives": 0,
+   "readiness": "BLOCKED",
+   "d6_warning_only": true,
+   "by_defect": {
+    "D1": [
+     19,
+     19
+    ],
+    "D2": [
+     5,
+     5
+    ],
+    "D3": [
+     451,
+     451
+    ],
+    "D4": [
+     6,
+     6
+    ],
+    "D5": [
+     428,
+     428
+    ],
+    "D6": [
+     100,
+     100
+    ],
+    "D7": [
+     8,
+     8
+    ],
+    "D8": [
+     8,
+     8
+    ],
+    "D9": [
+     6,
+     6
+    ]
+   },
+   "first_false_positives": []
+  },
+  {
+   "seed": 12,
+   "instances": 1017,
+   "detected": 1017,
+   "classes_detected": 9,
+   "findings": 1119,
+   "false_positives": 0,
+   "readiness": "BLOCKED",
+   "d6_warning_only": true,
+   "by_defect": {
+    "D1": [
+     21,
+     21
+    ],
+    "D2": [
+     5,
+     5
+    ],
+    "D3": [
+     445,
+     445
+    ],
+    "D4": [
+     6,
+     6
+    ],
+    "D5": [
+     415,
+     415
+    ],
+    "D6": [
+     103,
+     103
+    ],
+    "D7": [
+     8,
+     8
+    ],
+    "D8": [
+     8,
+     8
+    ],
+    "D9": [
+     6,
+     6
+    ]
+   },
+   "first_false_positives": []
+  },
+  {
+   "seed": 13,
+   "instances": 1000,
+   "detected": 1000,
+   "classes_detected": 9,
+   "findings": 1088,
+   "false_positives": 0,
+   "readiness": "BLOCKED",
+   "d6_warning_only": true,
+   "by_defect": {
+    "D1": [
+     17,
+     17
+    ],
+    "D2": [
+     5,
+     5
+    ],
+    "D3": [
+     440,
+     440
+    ],
+    "D4": [
+     6,
+     6
+    ],
+    "D5": [
+     406,
+     406
+    ],
+    "D6": [
+     104,
+     104
+    ],
+    "D7": [
+     8,
+     8
+    ],
+    "D8": [
+     8,
+     8
+    ],
+    "D9": [
+     6,
+     6
+    ]
+   },
+   "first_false_positives": []
+  },
+  {
+   "seed": 14,
+   "instances": 1045,
+   "detected": 1045,
+   "classes_detected": 9,
+   "findings": 1133,
+   "false_positives": 0,
+   "readiness": "BLOCKED",
+   "d6_warning_only": true,
+   "by_defect": {
+    "D1": [
+     23,
+     23
+    ],
+    "D2": [
+     5,
+     5
+    ],
+    "D3": [
+     461,
+     461
+    ],
+    "D4": [
+     6,
+     6
+    ],
+    "D5": [
+     422,
+     422
+    ],
+    "D6": [
+     106,
+     106
+    ],
+    "D7": [
+     8,
+     8
+    ],
+    "D8": [
+     8,
+     8
+    ],
+    "D9": [
+     6,
+     6
+    ]
+   },
+   "first_false_positives": []
+  },
+  {
+   "seed": 15,
+   "instances": 996,
+   "detected": 996,
+   "classes_detected": 9,
+   "findings": 1091,
+   "false_positives": 0,
+   "readiness": "BLOCKED",
+   "d6_warning_only": true,
+   "by_defect": {
+    "D1": [
+     21,
+     21
+    ],
+    "D2": [
+     5,
+     5
+    ],
+    "D3": [
+     431,
+     431
+    ],
+    "D4": [
+     6,
+     6
+    ],
+    "D5": [
+     410,
+     410
+    ],
+    "D6": [
+     101,
+     101
+    ],
+    "D7": [
+     8,
+     8
+    ],
+    "D8": [
+     8,
+     8
+    ],
+    "D9": [
+     6,
+     6
+    ]
+   },
+   "first_false_positives": []
+  },
+  {
+   "seed": 16,
+   "instances": 967,
+   "detected": 967,
+   "classes_detected": 9,
+   "findings": 1056,
+   "false_positives": 0,
+   "readiness": "BLOCKED",
+   "d6_warning_only": true,
+   "by_defect": {
+    "D1": [
+     22,
+     22
+    ],
+    "D2": [
+     5,
+     5
+    ],
+    "D3": [
+     399,
+     399
+    ],
+    "D4": [
+     6,
+     6
+    ],
+    "D5": [
+     412,
+     412
+    ],
+    "D6": [
+     101,
+     101
+    ],
+    "D7": [
+     8,
+     8
+    ],
+    "D8": [
+     8,
+     8
+    ],
+    "D9": [
+     6,
+     6
+    ]
+   },
+   "first_false_positives": []
+  },
+  {
+   "seed": 17,
+   "instances": 997,
+   "detected": 997,
+   "classes_detected": 9,
+   "findings": 1089,
+   "false_positives": 0,
+   "readiness": "BLOCKED",
+   "d6_warning_only": true,
+   "by_defect": {
+    "D1": [
+     21,
+     21
+    ],
+    "D2": [
+     5,
+     5
+    ],
+    "D3": [
+     428,
+     428
+    ],
+    "D4": [
+     6,
+     6
+    ],
+    "D5": [
+     415,
+     415
+    ],
+    "D6": [
+     100,
+     100
+    ],
+    "D7": [
+     8,
+     8
+    ],
+    "D8": [
+     8,
+     8
+    ],
+    "D9": [
+     6,
+     6
+    ]
+   },
+   "first_false_positives": []
+  },
+  {
+   "seed": 18,
+   "instances": 1013,
+   "detected": 1013,
+   "classes_detected": 9,
+   "findings": 1107,
+   "false_positives": 0,
+   "readiness": "BLOCKED",
+   "d6_warning_only": true,
+   "by_defect": {
+    "D1": [
+     19,
+     19
+    ],
+    "D2": [
+     5,
+     5
+    ],
+    "D3": [
+     449,
+     449
+    ],
+    "D4": [
+     6,
+     6
+    ],
+    "D5": [
+     419,
+     419
+    ],
+    "D6": [
+     93,
+     93
+    ],
+    "D7": [
+     8,
+     8
+    ],
+    "D8": [
+     8,
+     8
+    ],
+    "D9": [
+     6,
+     6
+    ]
+   },
+   "first_false_positives": []
+  },
+  {
+   "seed": 19,
+   "instances": 960,
+   "detected": 960,
+   "classes_detected": 9,
+   "findings": 1045,
+   "false_positives": 0,
+   "readiness": "BLOCKED",
+   "d6_warning_only": true,
+   "by_defect": {
+    "D1": [
+     19,
+     19
+    ],
+    "D2": [
+     5,
+     5
+    ],
+    "D3": [
+     404,
+     404
+    ],
+    "D4": [
+     6,
+     6
+    ],
+    "D5": [
+     414,
+     414
+    ],
+    "D6": [
+     90,
+     90
+    ],
+    "D7": [
+     8,
+     8
+    ],
+    "D8": [
+     8,
+     8
+    ],
+    "D9": [
+     6,
+     6
+    ]
+   },
+   "first_false_positives": []
+  },
+  {
+   "seed": 20,
+   "instances": 995,
+   "detected": 995,
+   "classes_detected": 9,
+   "findings": 1078,
+   "false_positives": 0,
+   "readiness": "BLOCKED",
+   "d6_warning_only": true,
+   "by_defect": {
+    "D1": [
+     21,
+     21
+    ],
+    "D2": [
+     5,
+     5
+    ],
+    "D3": [
+     434,
+     434
+    ],
+    "D4": [
+     6,
+     6
+    ],
+    "D5": [
+     406,
+     406
+    ],
+    "D6": [
+     101,
+     101
+    ],
+    "D7": [
+     8,
+     8
+    ],
+    "D8": [
+     8,
+     8
+    ],
+    "D9": [
+     6,
+     6
+    ]
+   },
+   "first_false_positives": []
+  }
+ ],
+ "seconds": 18.6
+}

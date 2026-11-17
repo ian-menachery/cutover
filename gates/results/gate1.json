@@ -1,0 +1,187 @@
+{
+ "gate": 1,
+ "pass": true,
+ "seeds": [
+  {
+   "seed": 1,
+   "open_findings": 0,
+   "known_exceptions": 4,
+   "stale": 0,
+   "skipped": 0,
+   "readiness": "READY",
+   "first_open": []
+  },
+  {
+   "seed": 2,
+   "open_findings": 0,
+   "known_exceptions": 4,
+   "stale": 0,
+   "skipped": 0,
+   "readiness": "READY",
+   "first_open": []
+  },
+  {
+   "seed": 3,
+   "open_findings": 0,
+   "known_exceptions": 4,
+   "stale": 0,
+   "skipped": 0,
+   "readiness": "READY",
+   "first_open": []
+  },
+  {
+   "seed": 4,
+   "open_findings": 0,
+   "known_exceptions": 4,
+   "stale": 0,
+   "skipped": 0,
+   "readiness": "READY",
+   "first_open": []
+  },
+  {
+   "seed": 5,
+   "open_findings": 0,
+   "known_exceptions": 4,
+   "stale": 0,
+   "skipped": 0,
+   "readiness": "READY",
+   "first_open": []
+  },
+  {
+   "seed": 6,
+   "open_findings": 0,
+   "known_exceptions": 4,
+   "stale": 0,
+   "skipped": 0,
+   "readiness": "READY",
+   "first_open": []
+  },
+  {
+   "seed": 7,
+   "open_findings": 0,
+   "known_exceptions": 4,
+   "stale": 0,
+   "skipped": 0,
+   "readiness": "READY",
+   "first_open": []
+  },
+  {
+   "seed": 8,
+   "open_findings": 0,
+   "known_exceptions": 4,
+   "stale": 0,
+   "skipped": 0,
+   "readiness": "READY",
+   "first_open": []
+  },
+  {
+   "seed": 9,
+   "open_findings": 0,
+   "known_exceptions": 4,
+   "stale": 0,
+   "skipped": 0,
+   "readiness": "READY",
+   "first_open": []
+  },
+  {
+   "seed": 10,
+   "open_findings": 0,
+   "known_exceptions": 4,
+   "stale": 0,
+   "skipped": 0,
+   "readiness": "READY",
+   "first_open": []
+  },
+  {
+   "seed": 11,
+   "open_findings": 0,
+   "known_exceptions": 4,
+   "stale": 0,
+   "skipped": 0,
+   "readiness": "READY",
+   "first_open": []
+  },
+  {
+   "seed": 12,
+   "open_findings": 0,
+   "known_exceptions": 4,
+   "stale": 0,
+   "skipped": 0,
+   "readiness": "READY",
+   "first_open": []
+  },
+  {
+   "seed": 13,
+   "open_findings": 0,
+   "known_exceptions": 4,
+   "stale": 0,
+   "skipped": 0,
+   "readiness": "READY",
+   "first_open": []
+  },
+  {
+   "seed": 14,
+   "open_findings": 0,
+   "known_exceptions": 4,
+   "stale": 0,
+   "skipped": 0,
+   "readiness": "READY",
+   "first_open": []
+  },
+  {
+   "seed": 15,
+   "open_findings": 0,
+   "known_exceptions": 4,
+   "stale": 0,
+   "skipped": 0,
+   "readiness": "READY",
+   "first_open": []
+  },
+  {
+   "seed": 16,
+   "open_findings": 0,
+   "known_exceptions": 4,
+   "stale": 0,
+   "skipped": 0,
+   "readiness": "READY",
+   "first_open": []
+  },
+  {
+   "seed": 17,
+   "open_findings": 0,
+   "known_exceptions": 4,
+   "stale": 0,
+   "skipped": 0,
+   "readiness": "READY",
+   "first_open": []
+  },
+  {
+   "seed": 18,
+   "open_findings": 0,
+   "known_exceptions": 4,
+   "stale": 0,
+   "skipped": 0,
+   "readiness": "READY",
+   "first_open": []
+  },
+  {
+   "seed": 19,
+   "open_findings": 0,
+   "known_exceptions": 4,
+   "stale": 0,
+   "skipped": 0,
+   "readiness": "READY",
+   "first_open": []
+  },
+  {
+   "seed": 20,
+   "open_findings": 0,
+   "known_exceptions": 4,
+   "stale": 0,
+   "skipped": 0,
+   "readiness": "READY",
+   "first_open": []
+  }
+ ],
+ "seconds": 13.7
+}
