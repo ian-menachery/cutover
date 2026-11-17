@@ -1,0 +1,62 @@
+{
+  "name": "Legacy policy admin to new CRM",
+  "target_date_format": "%Y-%m-%d",
+  "entities": [
+    {
+      "name": "accounts",
+      "source_file": "legacy_accounts.csv",
+      "target_file": "target_accounts.csv",
+      "source_key": "CUST_NO",
+      "target_key": "legacy_cust_no",
+      "target_id": "account_id",
+      "fields": [
+        {"source": "CUST_NAME", "target": "account_name", "class": "text", "required": true,
+         "transform": {"type": "text"}},
+        {"source": "CUST_TYPE", "target": "account_type", "class": "picklist", "required": true,
+         "transform": {"type": "map", "map": {"I": "Individual", "G": "Group", "T": "Trust"}}},
+        {"source": "ST", "target": "state", "class": "text", "required": false,
+         "transform": {"type": "text"}},
+        {"source": "OPEN_DT", "target": "opened_on", "class": "date", "required": true,
+         "transform": {"type": "date", "format": "%m/%d/%Y"}},
+        {"source": "STATUS", "target": "status", "class": "picklist", "required": true,
+         "transform": {"type": "map", "map": {"A": "Active", "I": "Inactive"}}}
+      ]
+    },
+    {
+      "name": "policies",
+      "source_file": "legacy_policies.csv",
+      "target_file": "target_policies.csv",
+      "source_key": "POL_NO",
+      "target_key": "legacy_pol_no",
+      "target_id": "policy_id",
+      "exclude_when": [
+        {"field": "STATUS", "equals": "LP"},
+        {"field": "LAPSE_DT", "before": "2019-01-01", "format": "%m/%d/%Y"}
+      ],
+      "fields": [
+        {"source": "CUST_NO", "target": "account_id", "class": "key", "required": true,
+         "transform": {"type": "parent", "entity": "accounts"}},
+        {"source": "PLAN_CD", "target": "product", "class": "picklist", "required": true,
+         "transform": {"type": "map", "map": {
+           "TL10": "Term 10", "TL20": "Term 20", "TL30": "Term 30",
+           "WL": "Whole Life", "UL": "Universal Life", "DI": "Disability Income"}}},
+        {"source": "MODE", "target": "billing_mode", "class": "picklist", "required": true,
+         "transform": {"type": "map", "map": {
+           "A": "Annual", "S": "Semi-annual", "Q": "Quarterly", "M": "Monthly"}}},
+        {"source": "ANN_PREM", "target": "annual_premium", "class": "money", "required": true,
+         "transform": {"type": "money"}},
+        {"source": "FACE_AMT", "target": "face_amount", "class": "money", "required": true,
+         "transform": {"type": "money"}},
+        {"source": "ISSUE_DT", "target": "issue_date", "class": "date", "required": true,
+         "transform": {"type": "date", "format": "%m/%d/%Y"}},
+        {"source": "STATUS", "target": "status", "class": "picklist", "required": true,
+         "transform": {"type": "map", "map": {
+           "IF": "In force", "LP": "Lapsed", "PU": "Paid-up", "PN": "Pending"}}}
+      ],
+      "control_totals": {
+        "group_by": ["product", "billing_mode"],
+        "sum": ["annual_premium", "face_amount"]
+      }
+    }
+  ]
+}
