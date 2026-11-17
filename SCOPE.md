@@ -182,8 +182,8 @@ a port, not a claim.
 - Excel input or output, a hosted service, Streamlit, auth.
 - More than two entities, more than ~10,000 rows per entity, performance work.
 - Scheduling, CI integration, connectors to real systems.
-- Claims about Sun Life or EY work. The story may cite them as motivation; the
-  project is not that work, and EY work is never described as client-facing.
+- Claims about any employer's systems or data. Past internship work motivates
+  the project; the project is not that work.
 
 ## Anti-polish rules
 
@@ -209,7 +209,7 @@ a port, not a claim.
 | 1 clean | 2026-11-17 | pass | 20/20 clean seeds READY: 0 open findings, all 4 deferrals matched as known exceptions, 0 stale, 0 skips. Proceed. |
 | 2 known defects | 2026-11-17 | pass | 9/9 classes in 20/20 seeds; 19,869/19,869 instances (100%); 0 false positives in 21,679 open findings; BLOCKED 20/20 with D6 under warnings only; every defect caught by exactly the predicted checks. Self-graded, so weak evidence alone: Gate 3 decides. |
 | 3 blind defects | 2026-11-17 | pass | Frozen checker `39cb853`, one run. 20/21 blind classes (95%, bar 80%); 148/151 instances (98.0%, bar 90%); 0 findings of any severity outside the key, including 17 planted decoys. Miss: B1, target names left untrimmed (0/3): the checker trims both sides before comparing, so target-side whitespace the spec forbids is invisible. Logged in BACKLOG, not patched. |
-| 4 port parity | | | |
+| 4 port parity | 2026-11-17 | pass | 21/21 cases: the TypeScript port's report equals the Python/DuckDB report exactly (statuses, findings, refs, messages, totals to the cent). |
 
 ## Amendments
 
@@ -218,3 +218,4 @@ a port, not a claim.
 | 2026-11-17 | R5's expected side also excludes registered deferrals. A deferred policy is a reconciling item; without this every run, clean or not, fails R5 in the deferred policies' groups, the same false alarm R1's rule already prevents. Written before the first gate run. |
 | 2026-11-17 | R4 compares against in-scope legacy keys and names a target row that matches an out-of-scope legacy row as `out_of_scope` (a scope violation) rather than letting it pass as "matched". R6 also counts an unparseable legacy value as a difference, so two NULLs never silently match. Both written before the first gate run. |
 | 2026-11-17 | Gate 2 scoring, stated exactly: a control-total finding counts as a true positive only if an instance that can move a total (a row on one side only, or a change to a summed or grouped field) touches its group; a count finding when its entity has an instance. Stricter than the bar as first written. Fixed before the gate run. |
+| 2026-11-17 | Out-of-scope wording on employer claims made generic before the repo goes public. Meaning unchanged. |
