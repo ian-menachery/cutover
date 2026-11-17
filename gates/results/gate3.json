@@ -1,0 +1,211 @@
+{
+ "gate": 3,
+ "frozen_checker": "39cb853",
+ "spec_unchanged": true,
+ "pass": true,
+ "class_recall": 0.9523809523809523,
+ "classes": 21,
+ "classes_detected": 20,
+ "instance_recall": 0.9801324503311258,
+ "instances": 151,
+ "instances_detected": 148,
+ "false_blockers": 0,
+ "outside_key_warnings": 0,
+ "aggregate_findings": 44,
+ "readiness": "BLOCKED",
+ "by_class": {
+  "B1": {
+   "title": "Account name not trimmed",
+   "instances": 3,
+   "detected": 0,
+   "caught_by": []
+  },
+  "B2": {
+   "title": "Account name re-cased",
+   "instances": 6,
+   "detected": 6,
+   "caught_by": [
+    "R6"
+   ]
+  },
+  "B3": {
+   "title": "Opened date day and month swapped",
+   "instances": 24,
+   "detected": 24,
+   "caught_by": [
+    "R6"
+   ]
+  },
+  "B4": {
+   "title": "Account type valid but wrong",
+   "instances": 3,
+   "detected": 3,
+   "caught_by": [
+    "R6"
+   ]
+  },
+  "B5": {
+   "title": "Optional state dropped",
+   "instances": 4,
+   "detected": 4,
+   "caught_by": [
+    "R6"
+   ]
+  },
+  "B6": {
+   "title": "Duplicate account rows",
+   "instances": 2,
+   "detected": 2,
+   "caught_by": [
+    "R2"
+   ]
+  },
+  "B7": {
+   "title": "Account missing from target",
+   "instances": 1,
+   "detected": 1,
+   "caught_by": [
+    "R3"
+   ]
+  },
+  "B8": {
+   "title": "Account re-keyed (cross-reference transposed)",
+   "instances": 2,
+   "detected": 2,
+   "caught_by": [
+    "R3",
+    "R4"
+   ]
+  },
+  "B9": {
+   "title": "Test account left in target",
+   "instances": 1,
+   "detected": 1,
+   "caught_by": [
+    "R2"
+   ]
+  },
+  "B10": {
+   "title": "Out-of-scope lapsed policies migrated",
+   "instances": 18,
+   "detected": 18,
+   "caught_by": [
+    "R4"
+   ]
+  },
+  "B11": {
+   "title": "Partial load: block of policies missing",
+   "instances": 12,
+   "detected": 12,
+   "caught_by": [
+    "R3"
+   ]
+  },
+  "B12": {
+   "title": "Unregistered pending policy held back",
+   "instances": 1,
+   "detected": 1,
+   "caught_by": [
+    "R3"
+   ]
+  },
+  "B13": {
+   "title": "Duplicate policy rows",
+   "instances": 3,
+   "detected": 3,
+   "caught_by": [
+    "R2"
+   ]
+  },
+  "B14": {
+   "title": "Premium off by one cent, offsetting",
+   "instances": 20,
+   "detected": 20,
+   "caught_by": [
+    "R6"
+   ]
+  },
+  "B15": {
+   "title": "Premiums cross-wired between adjacent policies",
+   "instances": 4,
+   "detected": 4,
+   "caught_by": [
+    "R6"
+   ]
+  },
+  "B16": {
+   "title": "Face amount misparsed with comma as decimal separator",
+   "instances": 2,
+   "detected": 2,
+   "caught_by": [
+    "R6"
+   ]
+  },
+  "B17": {
+   "title": "Issue date shifted one day early",
+   "instances": 30,
+   "detected": 30,
+   "caught_by": [
+    "R6"
+   ]
+  },
+  "B18": {
+   "title": "Product valid but wrong",
+   "instances": 5,
+   "detected": 5,
+   "caught_by": [
+    "R6"
+   ]
+  },
+  "B19": {
+   "title": "Policy linked to a same-name account",
+   "instances": 4,
+   "detected": 4,
+   "caught_by": [
+    "R6"
+   ]
+  },
+  "B20": {
+   "title": "Policy re-keyed (cross-reference truncated)",
+   "instances": 4,
+   "detected": 4,
+   "caught_by": [
+    "R3",
+    "R4"
+   ]
+  },
+  "B21": {
+   "title": "Parent link blank",
+   "instances": 2,
+   "detected": 2,
+   "caught_by": [
+    "R6",
+    "R8"
+   ]
+  }
+ },
+ "missed": [
+  {
+   "defect": "B1",
+   "entity": "accounts",
+   "key": "10011219",
+   "target_row": 51,
+   "field": "account_name"
+  },
+  {
+   "defect": "B1",
+   "entity": "accounts",
+   "key": "10018596",
+   "target_row": 300,
+   "field": "account_name"
+  },
+  {
+   "defect": "B1",
+   "entity": "accounts",
+   "key": "10024093",
+   "target_row": 480,
+   "field": "account_name"
+  }
+ ],
+ "outside_key": []
+}

@@ -1,0 +1,1273 @@
+{
+  "defects": [
+    {
+      "id": "B1",
+      "title": "Account name not trimmed",
+      "description": "Legacy CUST_NAME carries surrounding blanks (fixed-width padding) and the load skipped the trim step, so target account_name keeps the padding; the spec's text transform requires it trimmed."
+    },
+    {
+      "id": "B2",
+      "title": "Account name re-cased",
+      "description": "A name-cleansing rule converted some uppercase legacy names to proper case (e.g. SMITH, JOHN -> Smith, John). The text transform only trims; case must be preserved."
+    },
+    {
+      "id": "B3",
+      "title": "Opened date day and month swapped",
+      "description": "A batch of accounts was parsed as DD/MM/YYYY instead of MM/DD/YYYY. Where the day is 12 or less the result is still a valid date, so opened_on parses fine but has day and month swapped."
+    },
+    {
+      "id": "B4",
+      "title": "Account type valid but wrong",
+      "description": "Some trust accounts (CUST_TYPE T) were loaded as account_type Individual: a valid picklist label, wrong for the row."
+    },
+    {
+      "id": "B5",
+      "title": "Optional state dropped",
+      "description": "state was blanked on a few accounts whose legacy ST is populated. state is not required, but the spec maps it from ST, so a blank is a value discrepancy."
+    },
+    {
+      "id": "B6",
+      "title": "Duplicate account rows",
+      "description": "A retried batch re-inserted some accounts: the same legacy_cust_no appears twice with a new account_id. The instance points at the second (appended) row."
+    },
+    {
+      "id": "B7",
+      "title": "Account missing from target",
+      "description": "A legacy account has no target row. Accounts have no scope rule and no exception, so every account must migrate."
+    },
+    {
+      "id": "B8",
+      "title": "Account re-keyed (cross-reference transposed)",
+      "description": "One account's legacy_cust_no was keyed with its last two digits transposed. The legacy account therefore has no target row (instance with target_row null) and the target row has no legacy counterpart (instance keyed by the bad cross-reference)."
+    },
+    {
+      "id": "B9",
+      "title": "Test account left in target",
+      "description": "A test account with a blank legacy_cust_no is in the target. It has no legacy counterpart (key null)."
+    },
+    {
+      "id": "B10",
+      "title": "Out-of-scope lapsed policies migrated",
+      "description": "The scope filter (STATUS LP with LAPSE_DT before 2019-01-01) was not applied in the Disability Income extract, so every out-of-scope DI lapsed policy was migrated. Values are otherwise correctly transformed; the rows should not exist."
+    },
+    {
+      "id": "B11",
+      "title": "Partial load: block of policies missing",
+      "description": "A chunk of consecutive in-scope policies failed to load and was never retried; they have no target row."
+    },
+    {
+      "id": "B12",
+      "title": "Unregistered pending policy held back",
+      "description": "A fifth pending policy (legacy STATUS PN) was held back like the MIG-142 ones but never added to the exception register, so its absence from the target is not excused."
+    },
+    {
+      "id": "B13",
+      "title": "Duplicate policy rows",
+      "description": "A retried batch re-inserted some policies with new policy_ids; the same legacy_pol_no appears twice. The instance points at the second (appended) row."
+    },
+    {
+      "id": "B14",
+      "title": "Premium off by one cent, offsetting",
+      "description": "annual_premium is off by exactly 0.01 on pairs of policies in the same product x billing_mode group, one up and one down, so the signed-off control totals still tie."
+    },
+    {
+      "id": "B15",
+      "title": "Premiums cross-wired between adjacent policies",
+      "description": "Two pairs of adjacent policies in the same product x billing_mode group had their annual_premium values swapped. Each value is a real premium and the group totals tie, but each row carries its neighbour's premium."
+    },
+    {
+      "id": "B16",
+      "title": "Face amount misparsed with comma as decimal separator",
+      "description": "A locale-dependent parser read the thousands comma as a decimal point, so '250,000.00' loaded as 250.00. The value parses and is positive, but is 1000x too small."
+    },
+    {
+      "id": "B17",
+      "title": "Issue date shifted one day early",
+      "description": "A timezone conversion (local midnight to UTC, then truncated) moved issue_date back by one day on a batch of policies. Every value is a valid ISO date."
+    },
+    {
+      "id": "B18",
+      "title": "Product valid but wrong",
+      "description": "Some TL20 policies were loaded as product Term 10: a valid picklist label, wrong for the row."
+    },
+    {
+      "id": "B19",
+      "title": "Policy linked to a same-name account",
+      "description": "The parent lookup matched on account name instead of the CUST_NO cross-reference, so some policies hang off a different customer who happens to share the name. The parent account exists and its name matches, but it is not the account whose legacy_cust_no equals the policy's CUST_NO."
+    },
+    {
+      "id": "B20",
+      "title": "Policy re-keyed (cross-reference truncated)",
+      "description": "legacy_pol_no was truncated to 9 characters on two policies (dropped last digit). Each legacy policy therefore has no target row (instance with target_row null) and each target row has no legacy counterpart (instance keyed by the truncated cross-reference). Values are otherwise correct, so control totals tie."
+    },
+    {
+      "id": "B21",
+      "title": "Parent link blank",
+      "description": "account_id is blank on two policies (required field). The parent account exists in the target; the link was not populated."
+    }
+  ],
+  "instances": [
+    {
+      "defect": "B1",
+      "entity": "accounts",
+      "key": "10011219",
+      "target_row": 51,
+      "field": "account_name"
+    },
+    {
+      "defect": "B1",
+      "entity": "accounts",
+      "key": "10018596",
+      "target_row": 300,
+      "field": "account_name"
+    },
+    {
+      "defect": "B1",
+      "entity": "accounts",
+      "key": "10024093",
+      "target_row": 480,
+      "field": "account_name"
+    },
+    {
+      "defect": "B2",
+      "entity": "accounts",
+      "key": "10025556",
+      "target_row": 528,
+      "field": "account_name"
+    },
+    {
+      "defect": "B2",
+      "entity": "accounts",
+      "key": "10026450",
+      "target_row": 558,
+      "field": "account_name"
+    },
+    {
+      "defect": "B2",
+      "entity": "accounts",
+      "key": "10026579",
+      "target_row": 562,
+      "field": "account_name"
+    },
+    {
+      "defect": "B2",
+      "entity": "accounts",
+      "key": "10033210",
+      "target_row": 784,
+      "field": "account_name"
+    },
+    {
+      "defect": "B2",
+      "entity": "accounts",
+      "key": "10037048",
+      "target_row": 898,
+      "field": "account_name"
+    },
+    {
+      "defect": "B2",
+      "entity": "accounts",
+      "key": "10037066",
+      "target_row": 900,
+      "field": "account_name"
+    },
+    {
+      "defect": "B3",
+      "entity": "accounts",
+      "key": "10010228",
+      "target_row": 26,
+      "field": "opened_on"
+    },
+    {
+      "defect": "B3",
+      "entity": "accounts",
+      "key": "10014485",
+      "target_row": 163,
+      "field": "opened_on"
+    },
+    {
+      "defect": "B3",
+      "entity": "accounts",
+      "key": "10015415",
+      "target_row": 194,
+      "field": "opened_on"
+    },
+    {
+      "defect": "B3",
+      "entity": "accounts",
+      "key": "10017657",
+      "target_row": 265,
+      "field": "opened_on"
+    },
+    {
+      "defect": "B3",
+      "entity": "accounts",
+      "key": "10019455",
+      "target_row": 330,
+      "field": "opened_on"
+    },
+    {
+      "defect": "B3",
+      "entity": "accounts",
+      "key": "10020103",
+      "target_row": 351,
+      "field": "opened_on"
+    },
+    {
+      "defect": "B3",
+      "entity": "accounts",
+      "key": "10020281",
+      "target_row": 357,
+      "field": "opened_on"
+    },
+    {
+      "defect": "B3",
+      "entity": "accounts",
+      "key": "10020893",
+      "target_row": 379,
+      "field": "opened_on"
+    },
+    {
+      "defect": "B3",
+      "entity": "accounts",
+      "key": "10023004",
+      "target_row": 447,
+      "field": "opened_on"
+    },
+    {
+      "defect": "B3",
+      "entity": "accounts",
+      "key": "10023734",
+      "target_row": 469,
+      "field": "opened_on"
+    },
+    {
+      "defect": "B3",
+      "entity": "accounts",
+      "key": "10026063",
+      "target_row": 545,
+      "field": "opened_on"
+    },
+    {
+      "defect": "B3",
+      "entity": "accounts",
+      "key": "10030343",
+      "target_row": 688,
+      "field": "opened_on"
+    },
+    {
+      "defect": "B3",
+      "entity": "accounts",
+      "key": "10033618",
+      "target_row": 795,
+      "field": "opened_on"
+    },
+    {
+      "defect": "B3",
+      "entity": "accounts",
+      "key": "10034280",
+      "target_row": 812,
+      "field": "opened_on"
+    },
+    {
+      "defect": "B3",
+      "entity": "accounts",
+      "key": "10034951",
+      "target_row": 834,
+      "field": "opened_on"
+    },
+    {
+      "defect": "B3",
+      "entity": "accounts",
+      "key": "10039012",
+      "target_row": 961,
+      "field": "opened_on"
+    },
+    {
+      "defect": "B3",
+      "entity": "accounts",
+      "key": "10042959",
+      "target_row": 1093,
+      "field": "opened_on"
+    },
+    {
+      "defect": "B3",
+      "entity": "accounts",
+      "key": "10047790",
+      "target_row": 1255,
+      "field": "opened_on"
+    },
+    {
+      "defect": "B3",
+      "entity": "accounts",
+      "key": "10048276",
+      "target_row": 1269,
+      "field": "opened_on"
+    },
+    {
+      "defect": "B3",
+      "entity": "accounts",
+      "key": "10048955",
+      "target_row": 1291,
+      "field": "opened_on"
+    },
+    {
+      "defect": "B3",
+      "entity": "accounts",
+      "key": "10051827",
+      "target_row": 1382,
+      "field": "opened_on"
+    },
+    {
+      "defect": "B3",
+      "entity": "accounts",
+      "key": "10054335",
+      "target_row": 1462,
+      "field": "opened_on"
+    },
+    {
+      "defect": "B3",
+      "entity": "accounts",
+      "key": "10054701",
+      "target_row": 1476,
+      "field": "opened_on"
+    },
+    {
+      "defect": "B3",
+      "entity": "accounts",
+      "key": "10054930",
+      "target_row": 1483,
+      "field": "opened_on"
+    },
+    {
+      "defect": "B4",
+      "entity": "accounts",
+      "key": "10013365",
+      "target_row": 121,
+      "field": "account_type"
+    },
+    {
+      "defect": "B4",
+      "entity": "accounts",
+      "key": "10013543",
+      "target_row": 129,
+      "field": "account_type"
+    },
+    {
+      "defect": "B4",
+      "entity": "accounts",
+      "key": "10036905",
+      "target_row": 892,
+      "field": "account_type"
+    },
+    {
+      "defect": "B5",
+      "entity": "accounts",
+      "key": "10017252",
+      "target_row": 250,
+      "field": "state"
+    },
+    {
+      "defect": "B5",
+      "entity": "accounts",
+      "key": "10018061",
+      "target_row": 280,
+      "field": "state"
+    },
+    {
+      "defect": "B5",
+      "entity": "accounts",
+      "key": "10020661",
+      "target_row": 371,
+      "field": "state"
+    },
+    {
+      "defect": "B5",
+      "entity": "accounts",
+      "key": "10042262",
+      "target_row": 1067,
+      "field": "state"
+    },
+    {
+      "defect": "B6",
+      "entity": "accounts",
+      "key": "10013947",
+      "target_row": 1501,
+      "field": null
+    },
+    {
+      "defect": "B6",
+      "entity": "accounts",
+      "key": "10029948",
+      "target_row": 1502,
+      "field": null
+    },
+    {
+      "defect": "B7",
+      "entity": "accounts",
+      "key": "10018719",
+      "target_row": null,
+      "field": null
+    },
+    {
+      "defect": "B8",
+      "entity": "accounts",
+      "key": "10050015",
+      "target_row": 1327,
+      "field": null
+    },
+    {
+      "defect": "B8",
+      "entity": "accounts",
+      "key": "10050051",
+      "target_row": null,
+      "field": null
+    },
+    {
+      "defect": "B9",
+      "entity": "accounts",
+      "key": null,
+      "target_row": 1503,
+      "field": null
+    },
+    {
+      "defect": "B10",
+      "entity": "policies",
+      "key": "P100150163",
+      "target_row": 583,
+      "field": null
+    },
+    {
+      "defect": "B10",
+      "entity": "policies",
+      "key": "P100200061",
+      "target_row": 820,
+      "field": null
+    },
+    {
+      "defect": "B10",
+      "entity": "policies",
+      "key": "P100213142",
+      "target_row": 883,
+      "field": null
+    },
+    {
+      "defect": "B10",
+      "entity": "policies",
+      "key": "P100224721",
+      "target_row": 927,
+      "field": null
+    },
+    {
+      "defect": "B10",
+      "entity": "policies",
+      "key": "P100238796",
+      "target_row": 994,
+      "field": null
+    },
+    {
+      "defect": "B10",
+      "entity": "policies",
+      "key": "P100326552",
+      "target_row": 1402,
+      "field": null
+    },
+    {
+      "defect": "B10",
+      "entity": "policies",
+      "key": "P100359646",
+      "target_row": 1558,
+      "field": null
+    },
+    {
+      "defect": "B10",
+      "entity": "policies",
+      "key": "P100463953",
+      "target_row": 2045,
+      "field": null
+    },
+    {
+      "defect": "B10",
+      "entity": "policies",
+      "key": "P100494528",
+      "target_row": 2186,
+      "field": null
+    },
+    {
+      "defect": "B10",
+      "entity": "policies",
+      "key": "P100615958",
+      "target_row": 2750,
+      "field": null
+    },
+    {
+      "defect": "B10",
+      "entity": "policies",
+      "key": "P100642338",
+      "target_row": 2870,
+      "field": null
+    },
+    {
+      "defect": "B10",
+      "entity": "policies",
+      "key": "P100642775",
+      "target_row": 2873,
+      "field": null
+    },
+    {
+      "defect": "B10",
+      "entity": "policies",
+      "key": "P100645405",
+      "target_row": 2887,
+      "field": null
+    },
+    {
+      "defect": "B10",
+      "entity": "policies",
+      "key": "P100659767",
+      "target_row": 2942,
+      "field": null
+    },
+    {
+      "defect": "B10",
+      "entity": "policies",
+      "key": "P100679183",
+      "target_row": 3029,
+      "field": null
+    },
+    {
+      "defect": "B10",
+      "entity": "policies",
+      "key": "P100679207",
+      "target_row": 3030,
+      "field": null
+    },
+    {
+      "defect": "B10",
+      "entity": "policies",
+      "key": "P100759871",
+      "target_row": 3410,
+      "field": null
+    },
+    {
+      "defect": "B10",
+      "entity": "policies",
+      "key": "P100793169",
+      "target_row": 3555,
+      "field": null
+    },
+    {
+      "defect": "B11",
+      "entity": "policies",
+      "key": "P100646043",
+      "target_row": null,
+      "field": null
+    },
+    {
+      "defect": "B11",
+      "entity": "policies",
+      "key": "P100646142",
+      "target_row": null,
+      "field": null
+    },
+    {
+      "defect": "B11",
+      "entity": "policies",
+      "key": "P100646347",
+      "target_row": null,
+      "field": null
+    },
+    {
+      "defect": "B11",
+      "entity": "policies",
+      "key": "P100646580",
+      "target_row": null,
+      "field": null
+    },
+    {
+      "defect": "B11",
+      "entity": "policies",
+      "key": "P100646637",
+      "target_row": null,
+      "field": null
+    },
+    {
+      "defect": "B11",
+      "entity": "policies",
+      "key": "P100646921",
+      "target_row": null,
+      "field": null
+    },
+    {
+      "defect": "B11",
+      "entity": "policies",
+      "key": "P100647231",
+      "target_row": null,
+      "field": null
+    },
+    {
+      "defect": "B11",
+      "entity": "policies",
+      "key": "P100647424",
+      "target_row": null,
+      "field": null
+    },
+    {
+      "defect": "B11",
+      "entity": "policies",
+      "key": "P100647648",
+      "target_row": null,
+      "field": null
+    },
+    {
+      "defect": "B11",
+      "entity": "policies",
+      "key": "P100647857",
+      "target_row": null,
+      "field": null
+    },
+    {
+      "defect": "B11",
+      "entity": "policies",
+      "key": "P100648136",
+      "target_row": null,
+      "field": null
+    },
+    {
+      "defect": "B11",
+      "entity": "policies",
+      "key": "P100648533",
+      "target_row": null,
+      "field": null
+    },
+    {
+      "defect": "B12",
+      "entity": "policies",
+      "key": "P100213526",
+      "target_row": null,
+      "field": null
+    },
+    {
+      "defect": "B13",
+      "entity": "policies",
+      "key": "P100522818",
+      "target_row": 3556,
+      "field": null
+    },
+    {
+      "defect": "B13",
+      "entity": "policies",
+      "key": "P100777509",
+      "target_row": 3557,
+      "field": null
+    },
+    {
+      "defect": "B13",
+      "entity": "policies",
+      "key": "P100788178",
+      "target_row": 3558,
+      "field": null
+    },
+    {
+      "defect": "B14",
+      "entity": "policies",
+      "key": "P100083970",
+      "target_row": 264,
+      "field": "annual_premium"
+    },
+    {
+      "defect": "B14",
+      "entity": "policies",
+      "key": "P100139971",
+      "target_row": 532,
+      "field": "annual_premium"
+    },
+    {
+      "defect": "B14",
+      "entity": "policies",
+      "key": "P100179426",
+      "target_row": 712,
+      "field": "annual_premium"
+    },
+    {
+      "defect": "B14",
+      "entity": "policies",
+      "key": "P100235164",
+      "target_row": 975,
+      "field": "annual_premium"
+    },
+    {
+      "defect": "B14",
+      "entity": "policies",
+      "key": "P100238603",
+      "target_row": 992,
+      "field": "annual_premium"
+    },
+    {
+      "defect": "B14",
+      "entity": "policies",
+      "key": "P100301270",
+      "target_row": 1277,
+      "field": "annual_premium"
+    },
+    {
+      "defect": "B14",
+      "entity": "policies",
+      "key": "P100343139",
+      "target_row": 1484,
+      "field": "annual_premium"
+    },
+    {
+      "defect": "B14",
+      "entity": "policies",
+      "key": "P100348199",
+      "target_row": 1507,
+      "field": "annual_premium"
+    },
+    {
+      "defect": "B14",
+      "entity": "policies",
+      "key": "P100367294",
+      "target_row": 1592,
+      "field": "annual_premium"
+    },
+    {
+      "defect": "B14",
+      "entity": "policies",
+      "key": "P100419287",
+      "target_row": 1839,
+      "field": "annual_premium"
+    },
+    {
+      "defect": "B14",
+      "entity": "policies",
+      "key": "P100465100",
+      "target_row": 2050,
+      "field": "annual_premium"
+    },
+    {
+      "defect": "B14",
+      "entity": "policies",
+      "key": "P100513869",
+      "target_row": 2273,
+      "field": "annual_premium"
+    },
+    {
+      "defect": "B14",
+      "entity": "policies",
+      "key": "P100530473",
+      "target_row": 2349,
+      "field": "annual_premium"
+    },
+    {
+      "defect": "B14",
+      "entity": "policies",
+      "key": "P100532350",
+      "target_row": 2357,
+      "field": "annual_premium"
+    },
+    {
+      "defect": "B14",
+      "entity": "policies",
+      "key": "P100584121",
+      "target_row": 2600,
+      "field": "annual_premium"
+    },
+    {
+      "defect": "B14",
+      "entity": "policies",
+      "key": "P100609744",
+      "target_row": 2716,
+      "field": "annual_premium"
+    },
+    {
+      "defect": "B14",
+      "entity": "policies",
+      "key": "P100653369",
+      "target_row": 2916,
+      "field": "annual_premium"
+    },
+    {
+      "defect": "B14",
+      "entity": "policies",
+      "key": "P100697922",
+      "target_row": 3128,
+      "field": "annual_premium"
+    },
+    {
+      "defect": "B14",
+      "entity": "policies",
+      "key": "P100753396",
+      "target_row": 3381,
+      "field": "annual_premium"
+    },
+    {
+      "defect": "B14",
+      "entity": "policies",
+      "key": "P100765469",
+      "target_row": 3434,
+      "field": "annual_premium"
+    },
+    {
+      "defect": "B15",
+      "entity": "policies",
+      "key": "P100558531",
+      "target_row": 2479,
+      "field": "annual_premium"
+    },
+    {
+      "defect": "B15",
+      "entity": "policies",
+      "key": "P100558545",
+      "target_row": 2480,
+      "field": "annual_premium"
+    },
+    {
+      "defect": "B15",
+      "entity": "policies",
+      "key": "P100782374",
+      "target_row": 3503,
+      "field": "annual_premium"
+    },
+    {
+      "defect": "B15",
+      "entity": "policies",
+      "key": "P100782482",
+      "target_row": 3504,
+      "field": "annual_premium"
+    },
+    {
+      "defect": "B16",
+      "entity": "policies",
+      "key": "P100547146",
+      "target_row": 2427,
+      "field": "face_amount"
+    },
+    {
+      "defect": "B16",
+      "entity": "policies",
+      "key": "P100677214",
+      "target_row": 3022,
+      "field": "face_amount"
+    },
+    {
+      "defect": "B17",
+      "entity": "policies",
+      "key": "P100070163",
+      "target_row": 199,
+      "field": "issue_date"
+    },
+    {
+      "defect": "B17",
+      "entity": "policies",
+      "key": "P100074300",
+      "target_row": 219,
+      "field": "issue_date"
+    },
+    {
+      "defect": "B17",
+      "entity": "policies",
+      "key": "P100086911",
+      "target_row": 280,
+      "field": "issue_date"
+    },
+    {
+      "defect": "B17",
+      "entity": "policies",
+      "key": "P100093282",
+      "target_row": 306,
+      "field": "issue_date"
+    },
+    {
+      "defect": "B17",
+      "entity": "policies",
+      "key": "P100145670",
+      "target_row": 560,
+      "field": "issue_date"
+    },
+    {
+      "defect": "B17",
+      "entity": "policies",
+      "key": "P100151068",
+      "target_row": 587,
+      "field": "issue_date"
+    },
+    {
+      "defect": "B17",
+      "entity": "policies",
+      "key": "P100165355",
+      "target_row": 649,
+      "field": "issue_date"
+    },
+    {
+      "defect": "B17",
+      "entity": "policies",
+      "key": "P100211029",
+      "target_row": 872,
+      "field": "issue_date"
+    },
+    {
+      "defect": "B17",
+      "entity": "policies",
+      "key": "P100222917",
+      "target_row": 918,
+      "field": "issue_date"
+    },
+    {
+      "defect": "B17",
+      "entity": "policies",
+      "key": "P100230577",
+      "target_row": 955,
+      "field": "issue_date"
+    },
+    {
+      "defect": "B17",
+      "entity": "policies",
+      "key": "P100252562",
+      "target_row": 1050,
+      "field": "issue_date"
+    },
+    {
+      "defect": "B17",
+      "entity": "policies",
+      "key": "P100254456",
+      "target_row": 1061,
+      "field": "issue_date"
+    },
+    {
+      "defect": "B17",
+      "entity": "policies",
+      "key": "P100278688",
+      "target_row": 1165,
+      "field": "issue_date"
+    },
+    {
+      "defect": "B17",
+      "entity": "policies",
+      "key": "P100302360",
+      "target_row": 1283,
+      "field": "issue_date"
+    },
+    {
+      "defect": "B17",
+      "entity": "policies",
+      "key": "P100388523",
+      "target_row": 1698,
+      "field": "issue_date"
+    },
+    {
+      "defect": "B17",
+      "entity": "policies",
+      "key": "P100411005",
+      "target_row": 1803,
+      "field": "issue_date"
+    },
+    {
+      "defect": "B17",
+      "entity": "policies",
+      "key": "P100411486",
+      "target_row": 1805,
+      "field": "issue_date"
+    },
+    {
+      "defect": "B17",
+      "entity": "policies",
+      "key": "P100437530",
+      "target_row": 1925,
+      "field": "issue_date"
+    },
+    {
+      "defect": "B17",
+      "entity": "policies",
+      "key": "P100448906",
+      "target_row": 1982,
+      "field": "issue_date"
+    },
+    {
+      "defect": "B17",
+      "entity": "policies",
+      "key": "P100528097",
+      "target_row": 2341,
+      "field": "issue_date"
+    },
+    {
+      "defect": "B17",
+      "entity": "policies",
+      "key": "P100566605",
+      "target_row": 2514,
+      "field": "issue_date"
+    },
+    {
+      "defect": "B17",
+      "entity": "policies",
+      "key": "P100629128",
+      "target_row": 2814,
+      "field": "issue_date"
+    },
+    {
+      "defect": "B17",
+      "entity": "policies",
+      "key": "P100638669",
+      "target_row": 2855,
+      "field": "issue_date"
+    },
+    {
+      "defect": "B17",
+      "entity": "policies",
+      "key": "P100639444",
+      "target_row": 2859,
+      "field": "issue_date"
+    },
+    {
+      "defect": "B17",
+      "entity": "policies",
+      "key": "P100663769",
+      "target_row": 2961,
+      "field": "issue_date"
+    },
+    {
+      "defect": "B17",
+      "entity": "policies",
+      "key": "P100726838",
+      "target_row": 3266,
+      "field": "issue_date"
+    },
+    {
+      "defect": "B17",
+      "entity": "policies",
+      "key": "P100740965",
+      "target_row": 3333,
+      "field": "issue_date"
+    },
+    {
+      "defect": "B17",
+      "entity": "policies",
+      "key": "P100747422",
+      "target_row": 3359,
+      "field": "issue_date"
+    },
+    {
+      "defect": "B17",
+      "entity": "policies",
+      "key": "P100759475",
+      "target_row": 3408,
+      "field": "issue_date"
+    },
+    {
+      "defect": "B17",
+      "entity": "policies",
+      "key": "P100767143",
+      "target_row": 3441,
+      "field": "issue_date"
+    },
+    {
+      "defect": "B18",
+      "entity": "policies",
+      "key": "P100123904",
+      "target_row": 458,
+      "field": "product"
+    },
+    {
+      "defect": "B18",
+      "entity": "policies",
+      "key": "P100126374",
+      "target_row": 471,
+      "field": "product"
+    },
+    {
+      "defect": "B18",
+      "entity": "policies",
+      "key": "P100333967",
+      "target_row": 1439,
+      "field": "product"
+    },
+    {
+      "defect": "B18",
+      "entity": "policies",
+      "key": "P100505042",
+      "target_row": 2235,
+      "field": "product"
+    },
+    {
+      "defect": "B18",
+      "entity": "policies",
+      "key": "P100667306",
+      "target_row": 2977,
+      "field": "product"
+    },
+    {
+      "defect": "B19",
+      "entity": "policies",
+      "key": "P100058806",
+      "target_row": 149,
+      "field": "account_id"
+    },
+    {
+      "defect": "B19",
+      "entity": "policies",
+      "key": "P100087851",
+      "target_row": 285,
+      "field": "account_id"
+    },
+    {
+      "defect": "B19",
+      "entity": "policies",
+      "key": "P100138985",
+      "target_row": 527,
+      "field": "account_id"
+    },
+    {
+      "defect": "B19",
+      "entity": "policies",
+      "key": "P100160691",
+      "target_row": 632,
+      "field": "account_id"
+    },
+    {
+      "defect": "B20",
+      "entity": "policies",
+      "key": "P10014377",
+      "target_row": 550,
+      "field": null
+    },
+    {
+      "defect": "B20",
+      "entity": "policies",
+      "key": "P100143777",
+      "target_row": null,
+      "field": null
+    },
+    {
+      "defect": "B20",
+      "entity": "policies",
+      "key": "P10073615",
+      "target_row": 3311,
+      "field": null
+    },
+    {
+      "defect": "B20",
+      "entity": "policies",
+      "key": "P100736150",
+      "target_row": null,
+      "field": null
+    },
+    {
+      "defect": "B21",
+      "entity": "policies",
+      "key": "P100429793",
+      "target_row": 1890,
+      "field": "account_id"
+    },
+    {
+      "defect": "B21",
+      "entity": "policies",
+      "key": "P100507755",
+      "target_row": 2246,
+      "field": "account_id"
+    }
+  ],
+  "decoys": [
+    {
+      "entity": "accounts",
+      "key": "10014350",
+      "field": "account_name",
+      "note": "legacy CUST_NAME padded; target correctly trimmed"
+    },
+    {
+      "entity": "accounts",
+      "key": "10014458",
+      "field": "account_name",
+      "note": "legacy CUST_NAME padded; target correctly trimmed"
+    },
+    {
+      "entity": "accounts",
+      "key": "10020154",
+      "field": "account_name",
+      "note": "legacy CUST_NAME padded; target correctly trimmed"
+    },
+    {
+      "entity": "accounts",
+      "key": "10020257",
+      "field": "account_name",
+      "note": "legacy CUST_NAME padded; target correctly trimmed"
+    },
+    {
+      "entity": "accounts",
+      "key": "10029069",
+      "field": "account_name",
+      "note": "legacy CUST_NAME padded; target correctly trimmed"
+    },
+    {
+      "entity": "accounts",
+      "key": "10030624",
+      "field": "account_name",
+      "note": "legacy CUST_NAME padded; target correctly trimmed"
+    },
+    {
+      "entity": "accounts",
+      "key": "10031981",
+      "field": "account_name",
+      "note": "legacy CUST_NAME padded; target correctly trimmed"
+    },
+    {
+      "entity": "accounts",
+      "key": "10046226",
+      "field": "account_name",
+      "note": "legacy CUST_NAME padded; target correctly trimmed"
+    },
+    {
+      "entity": "accounts",
+      "key": "10050411",
+      "field": "account_name",
+      "note": "legacy CUST_NAME padded; target correctly trimmed"
+    },
+    {
+      "entity": "accounts",
+      "key": "10054167",
+      "field": "account_name",
+      "note": "legacy CUST_NAME padded; target correctly trimmed"
+    },
+    {
+      "entity": "accounts",
+      "key": "10009696",
+      "field": "state",
+      "note": "legacy ST padded; target correctly trimmed"
+    },
+    {
+      "entity": "accounts",
+      "key": "10024810",
+      "field": "state",
+      "note": "legacy ST padded; target correctly trimmed"
+    },
+    {
+      "entity": "accounts",
+      "key": "10026372",
+      "field": "state",
+      "note": "legacy ST padded; target correctly trimmed"
+    },
+    {
+      "entity": "accounts",
+      "key": "10028025",
+      "field": "state",
+      "note": "legacy ST padded; target correctly trimmed"
+    },
+    {
+      "entity": "accounts",
+      "key": "10039013",
+      "field": "state",
+      "note": "legacy ST padded; target correctly trimmed"
+    },
+    {
+      "entity": "policies",
+      "key": "P100456810",
+      "field": null,
+      "note": "LAPSE_DT set to the cutoff 01/01/2019: in scope, correctly migrated"
+    },
+    {
+      "entity": "policies",
+      "key": "P100347410",
+      "field": null,
+      "note": "LAPSE_DT set to 12/31/2018: out of scope, correctly not migrated"
+    }
+  ],
+  "notes": "decoys are planted spec-compliant variations, not defects; a flag on one is a false positive."
+}

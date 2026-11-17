@@ -4,7 +4,7 @@ Committed before any implementation. Amendments go in the dated table at the
 bottom, never as a silent edit. Gates and bars below are fixed before code.
 
 **Package:** `cutover` · **Started:** 2026-11-17 · **Time box:** 16 hours of
-work; hard stop at 20.
+work; hard stop at 20. Hours are logged as wall-clock session time.
 
 **One-line purpose:** Given a legacy-system export, the new system's export, and
 the signed-off mapping spec, say whether the migration ties out, point at every
@@ -198,7 +198,8 @@ a port, not a claim.
 | Date | Hours to date | What changed | Next |
 |---|---|---|---|
 | 2026-11-17 | ~0.5 | Repo created, SCOPE drafted. | Ian's approval, then spec + generator. |
-| 2026-11-17 | ~5 | SCOPE approved. Spec, DuckDB loader and views, R1-R8, runner with exception register and readiness, generator (legacy data, independent Python ETL, nine defects as patches), scorer, 32 tests at 99% coverage on checks. Gates 1 and 2 pass on first run. | Gate 3 blind round, then the TypeScript port. |
+| 2026-11-17 | ~0.5 | SCOPE approved. Spec, DuckDB loader and views, R1-R8, runner with exception register and readiness, generator (legacy data, independent Python ETL, nine defects as patches), scorer, 32 tests at 99% coverage on checks. Gates 1 and 2 pass on first run. | Gate 3 blind round, then the TypeScript port. |
+| 2026-11-17 | ~0.75 | Gate 3 passed on one run (20/21 classes, 148/151, 0 outside-key findings); the miss is logged. TypeScript port written and checked against 21 Python reference reports. | Demo page, case study, README, hand-off. |
 
 ## Gate results
 
@@ -207,7 +208,7 @@ a port, not a claim.
 | 0 quality | | | |
 | 1 clean | 2026-11-17 | pass | 20/20 clean seeds READY: 0 open findings, all 4 deferrals matched as known exceptions, 0 stale, 0 skips. Proceed. |
 | 2 known defects | 2026-11-17 | pass | 9/9 classes in 20/20 seeds; 19,869/19,869 instances (100%); 0 false positives in 21,679 open findings; BLOCKED 20/20 with D6 under warnings only; every defect caught by exactly the predicted checks. Self-graded, so weak evidence alone: Gate 3 decides. |
-| 3 blind defects | | | |
+| 3 blind defects | 2026-11-17 | pass | Frozen checker `39cb853`, one run. 20/21 blind classes (95%, bar 80%); 148/151 instances (98.0%, bar 90%); 0 findings of any severity outside the key, including 17 planted decoys. Miss: B1, target names left untrimmed (0/3): the checker trims both sides before comparing, so target-side whitespace the spec forbids is invisible. Logged in BACKLOG, not patched. |
 | 4 port parity | | | |
 
 ## Amendments
