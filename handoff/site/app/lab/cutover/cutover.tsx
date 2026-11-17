@@ -34,7 +34,13 @@ function ref(f: Finding) {
 }
 
 function line(s: Summary) {
-  return `${s.check} ${s.name}: ${s.count} ${s.entity}${s.field ? ` · ${s.field}` : ""} (${s.kind.replaceAll("_", " ")})`;
+  const what =
+    s.kind === "control_total_mismatch"
+      ? `${s.count} ${s.entity} group(s)`
+      : s.kind === "count_mismatch"
+        ? `${s.entity} row count`
+        : `${s.count} ${s.entity}`;
+  return `${s.check} ${s.name}: ${what}${s.field ? ` · ${s.field}` : ""} (${s.kind.replaceAll("_", " ")})`;
 }
 
 export default function Cutover({ demo }: { demo: Demo }) {
