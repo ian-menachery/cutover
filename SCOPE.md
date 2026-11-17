@@ -200,12 +200,13 @@ a port, not a claim.
 | 2026-11-17 | ~0.5 | Repo created, SCOPE drafted. | Ian's approval, then spec + generator. |
 | 2026-11-17 | ~0.5 | SCOPE approved. Spec, DuckDB loader and views, R1-R8, runner with exception register and readiness, generator (legacy data, independent Python ETL, nine defects as patches), scorer, 32 tests at 99% coverage on checks. Gates 1 and 2 pass on first run. | Gate 3 blind round, then the TypeScript port. |
 | 2026-11-17 | ~0.75 | Gate 3 passed on one run (20/21 classes, 148/151, 0 outside-key findings); the miss is logged. TypeScript port written and checked against 21 Python reference reports. | Demo page, case study, README, hand-off. |
+| 2026-11-17 | ~1.25 | README with results; demo page, case study and site entries built and verified in a throwaway copy of the site (251 site tests, lint, `next build`, browser check at phone width). Public repo created as approved; Gate 0 passes with HEAD pushed. All five gates pass. | Phase 3 session merges `handoff/site/`. BACKLOG item 1 (one-sided trim) only with a new blind round. |
 
 ## Gate results
 
 | Gate | Date | Result | Decision |
 |---|---|---|---|
-| 0 quality | | | |
+| 0 quality | 2026-11-17 | pass | `py gate.py`: ruff lint and format clean, 32 tests, 99% coverage on `cutover.checks`, clean tree, HEAD pushed to the public repo. |
 | 1 clean | 2026-11-17 | pass | 20/20 clean seeds READY: 0 open findings, all 4 deferrals matched as known exceptions, 0 stale, 0 skips. Proceed. |
 | 2 known defects | 2026-11-17 | pass | 9/9 classes in 20/20 seeds; 19,869/19,869 instances (100%); 0 false positives in 21,679 open findings; BLOCKED 20/20 with D6 under warnings only; every defect caught by exactly the predicted checks. Self-graded, so weak evidence alone: Gate 3 decides. |
 | 3 blind defects | 2026-11-17 | pass | Frozen checker `39cb853`, one run. 20/21 blind classes (95%, bar 80%); 148/151 instances (98.0%, bar 90%); 0 findings of any severity outside the key, including 17 planted decoys. Miss: B1, target names left untrimmed (0/3): the checker trims both sides before comparing, so target-side whitespace the spec forbids is invisible. Logged in BACKLOG, not patched. |
