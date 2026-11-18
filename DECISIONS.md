@@ -83,3 +83,9 @@ The first log entry claimed "~5 hours to date"; that was an estimate, not a
 measurement, and wrong. The session started at about 12:07 and the engine and
 Gates 1-2 were committed by 12:33. Hours in the log are now wall-clock time
 from the session, which for an agent session is far below the 16-hour box.
+
+## 8. B1 left as is (2026-11-18)
+
+Ian chose not to fix the untrimmed-name miss or run a second blind round. The
+Gate 3 result stands at 20/21 classes and 148/151 instances; BACKLOG item 1
+stays open.
